@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Finance Tracker</title>
+  <button id="themeToggle" class="theme-btn">🌙 Dark</button>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="intro">
+  <div class="intro-content">
+    <div class="logo">₹</div>
+    <h1>Simple Finance Tracker</h1>
+    <p>Track • Analyze • Grow</p>
+  </div>
+</div>
+
+
+
+<h1 class="main-title">Simple Finance Tracker</h1>
+<p id="monthLabel" style="opacity:.8;font-weight:600"></p>
+
+<div class="container">
+
+  <div class="summary">
+    <div>
+      <h3>Total Income</h3>
+      <p id="income">₹0</p>
+    </div>
+    <div>
+      <h3>Total Expense</h3>
+      <p id="expense">₹0</p>
+    </div>
+    <div>
+      <h3>Balance</h3>
+      <p id="balance">₹0</p>
+    </div>
+  </div>
+
+  <div class="form">
+    <input type="text" id="description" placeholder="Description">
+    <input type="number" id="amount" placeholder="Amount">
+    <input type="date" id="date">
+    <select id="type">
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+    <button onclick="addTransaction()">Add Transaction</button>
+  </div>
+
+  <div class="actions">
+    <button class="save" onclick="saveData()">Save Data</button>
+    <button class="clear" onclick="clearData()">Clear Data</button>
+  </div>
+
+  <div class="tools">
+    <input type="text" id="searchInput" placeholder="Search description..." onkeyup="applyFilters()">
+
+    <select id="filterType" onchange="applyFilters()">
+      <option value="all">All</option>
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+
+    <button onclick="exportCSV()">Export CSV</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Type</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+
+  <h2>Income vs Expense</h2>
+  <div class="chart-container">
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <!-- ===== Interest Calculator Section ===== -->
+  <h2>Simple Interest Calculator</h2>
+  <div class="interest-box">
+    <input type="number" id="principal" placeholder="Principal (₹)">
+    <input type="number" id="rate" placeholder="Rate (%)">
+    <input type="number" id="time" placeholder="Time (Years)">
+    <button onclick="calculateInterest()">Calculate</button>
+    <p id="interestResult"></p>
+  </div>
+<!-- ===== Budget Section ===== -->
+<h2>Monthly Budget</h2>
+<div class="budget-box">
+  <input type="number" id="budgetInput" placeholder="Set Monthly Budget (₹)">
+  <button onclick="setBudget()">Set Budget</button>
+  <p id="budgetWarning"></p>
+</div>
+
+<!-- ===== Savings Goal Section ===== -->
+<h2>Savings Goal Tracker</h2>
+<div class="goal-box">
+  <input type="number" id="goalInput" placeholder="Set Savings Goal (₹)">
+  <button onclick="setGoal()">Set Goal</button>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <p id="goalStatus"></p>
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
